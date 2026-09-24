@@ -224,6 +224,13 @@
 }
 
 html {
+  /*
+   * Base scale: 18px вместо дефолтных 16px (+12.5%).
+   * Всё в rem (текст, паддинги, радиусы, наши --space-*) растёт пропорционально.
+   * Хайрлайны (1px бордеры, outline) — остаются px намеренно.
+   * Менять это значение — единственный способ глобально масштабировать UI.
+   */
+  font-size: 112.5%;
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   scrollbar-width: thin;

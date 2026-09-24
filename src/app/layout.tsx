@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { Header } from "@/widgets/header";
 import { Footer } from "@/widgets/footer";
+import { AnimatedCursor } from "../shared/ui/cursor";
 
 const montserrat = Montserrat({
   subsets: ["cyrillic", "latin"],
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="ru" className={montserrat.variable}>
       <body>
+        <AnimatedCursor />
         <Header />
         <main>{children}</main>
         <Footer />
