@@ -1,6 +1,8 @@
 import { Hero } from "@/widgets/hero";
 import { About } from "@/widgets/about";
 import { Programs } from "@/widgets/programs";
+import { License } from "@/widgets/license";
+import { Contact } from "@/widgets/contact";
 
 export function HomePage() {
   return (
@@ -8,8 +10,8 @@ export function HomePage() {
       <Hero />
       <About />
       <Programs />
-      {/* TODO: License (Этап 5) */}
-      {/* TODO: Contact + ContactForm (Этап 6) */}
+      <License />
+      <Contact />
     </>
   );
 }

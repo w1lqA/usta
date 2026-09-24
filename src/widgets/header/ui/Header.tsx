@@ -13,7 +13,7 @@ const PHONE = "+7 (999) 870-74-05";
 const PHONE_HREF = "tel:+79998707405";
 
 export function Header() {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "/";
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 

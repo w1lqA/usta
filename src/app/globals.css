@@ -433,6 +433,23 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   box-shadow: 0 0 0 0.1875rem rgba(201, 75, 75, 0.12);
 }
 
+.field-input-dark {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: var(--white);
+}
+.field-input-dark::placeholder { color: rgba(255, 255, 255, 0.25); }
+.field-input-dark:hover { border-color: rgba(255, 255, 255, 0.22); }
+.field-input-dark:focus {
+  border-color: var(--brand-accent);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 0.1875rem rgba(39, 124, 122, 0.18);
+}
+.field-input-dark.field-input-error {
+  border-color: var(--error);
+}
+
+
 /* =========================================================
    Media / radius / transitions
    ========================================================= */

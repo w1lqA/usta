@@ -29,8 +29,8 @@
       "@/app/*": [
         "./app/*"
       ],
-      "@/pages/*": [
-        "./src/pages/*"
+      "@/views/*": [
+        "./src/views/*"
       ],
       "@/widgets/*": [
         "./src/widgets/*"
