@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import type { HeroSlide } from "../model/slides";
 import { cn } from "@/shared/lib";
 
@@ -9,10 +9,12 @@ type Props = {
 };
 
 export function HeroPanel({ slide, isActive }: Props) {
+  const TitleTag: "h1" | "h2" = isActive ? "h1" : "h2";
+
   return (
     <div
       className={cn(
-        "transition-all duration-700",
+        "w-full max-w-[30rem] transition-all duration-700",
         isActive
           ? "translate-y-0 opacity-100"
           : "pointer-events-none absolute inset-0 translate-y-[1.125rem] opacity-0",
@@ -20,36 +22,44 @@ export function HeroPanel({ slide, isActive }: Props) {
     >
       <div
         className={cn(
-          "glass rounded-3xl flex flex-col w-full gap-4 border-l-[0.1875rem] border-l-brand-accent",
-          "shadow-lg",
-          "py-9 pr-11 pb-8 pl-9",
+          "glass flex flex-col gap-4 rounded-3xl border-l-[0.1875rem] border-l-brand-accent",
+          "w-full px-8 py-7 shadow-lg",
         )}
       >
-        <p className="text-label mb-5 text-brand-accent">{slide.label}</p>
+        {/* Label */}
+        <p className="text-label mb-3 text-brand-accent">{slide.label}</p>
 
-        <h1 className="text-hero w-full font-extrabold text-dark-900 mb-5 whitespace-pre-line break-words hyphens-auto leading-none">
+        {/* Title */}
+        <TitleTag className="text-hero mb-5 font-extrabold leading-none text-dark-900">
           {slide.title}
-        </h1>
+        </TitleTag>
 
-        <p className="text-body text-neutral-600 mb-7 leading-[1.65]">
-          {slide.sub}
-        </p>
+        {/* Checklist */}
+        <ul className="mb-6 flex flex-col gap-2">
+          {slide.checklist.map((item) => (
+            <li key={item} className="flex items-start gap-2.5">
+              <span className="mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-brand-accent/10">
+                <Check
+                  size={9}
+                  className="text-brand-accent"
+                  strokeWidth={3}
+                />
+              </span>
+              <span className="text-sm leading-snug text-neutral-600">
+                {item}
+              </span>
+            </li>
+          ))}
+        </ul>
 
-        <div className="flex flex-wrap gap-3">
-          <Link
-            href={slide.ctaLink}
-            className="btn btn-primary rounded-md"
-          >
-            {slide.cta}
-            <ArrowRight size={14} />
-          </Link>
-          <Link
-            href={slide.ctaSecondaryLink}
-            className="btn btn-outline rounded-md"
-          >
-            {slide.ctaSecondary}
-          </Link>
-        </div>
+        {/* CTA */}
+        <Link
+          href={`/programs/${slide.slug}`}
+          className="btn btn-primary w-fit rounded-md"
+        >
+          Смотреть направление
+          <ArrowRight size={14} />
+        </Link>
       </div>
     </div>
   );

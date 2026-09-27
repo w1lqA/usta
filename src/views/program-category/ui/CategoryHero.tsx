@@ -30,7 +30,7 @@ export function CategoryHero({ category }: Props) {
       <Container className="relative">
         <div className="grid grid-cols-1 gap-12 py-20 lg:grid-cols-12 lg:py-28">
           {/* Left — заголовок + описание */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 flex flex-col gap-2">
             {/* Breadcrumbs */}
             <nav
               aria-label="Хлебные крошки"
@@ -58,7 +58,7 @@ export function CategoryHero({ category }: Props) {
               {category.heroLabel}
             </p>
 
-            <h1 className="mb-6 max-w-[36rem] text-4xl leading-[1.05] font-extrabold text-white lg:text-6xl">
+            <h1 className="pb-3 max-w-[36rem] text-4xl leading-[1.05] font-extrabold text-white lg:text-6xl">
               {category.title}
             </h1>
 
@@ -70,11 +70,11 @@ export function CategoryHero({ category }: Props) {
           {/* Right — чек-лист */}
           {category.checklist.length > 0 && (
             <div className="lg:col-span-5">
-              <div className="glass-dark rounded-3xl border border-white/10 p-8">
-                <p className="mb-6 text-caption font-bold tracking-[0.22em] text-white/40 uppercase">
+              <div className="glass-dark rounded-3xl border border-white/10 p-8 flex flex-col gap-4">
+                <p className="text-caption font-bold tracking-[0.22em] text-white/40 uppercase">
                   Программы направления
                 </p>
-                <ul className="space-y-4">
+                <ul className="flex flex-col gap-3">
                   {category.checklist.map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-brand-green/15">

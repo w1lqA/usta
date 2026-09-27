@@ -31,17 +31,11 @@ function formatBreakdown(program: Program): string[] {
 }
 
 export function ProgramItem({ program, index, onOpen }: Props) {
-  // Чередование: чётные — фото слева, нечётные — фото справа
   const isReversed = index % 2 === 1;
-
   const breakdown = formatBreakdown(program);
 
   return (
-    <div
-      className={cn(
-        "grid grid-cols-1 items-stretch gap-0 overflow-hidden rounded-3xl bg-white shadow-sm lg:grid-cols-2",
-      )}
-    >
+    <div className="grid grid-cols-1 items-stretch overflow-hidden rounded-3xl bg-white shadow-sm lg:grid-cols-2">
       {/* Photo */}
       <div
         className={cn(
@@ -80,7 +74,7 @@ export function ProgramItem({ program, index, onOpen }: Props) {
           </p>
 
           {breakdown.length > 0 && (
-            <ul className="mb-5 space-y-1.5">
+            <ul className="mb-5 flex flex-col gap-1.5">
               {breakdown.map((row) => (
                 <li
                   key={row}
@@ -104,7 +98,7 @@ export function ProgramItem({ program, index, onOpen }: Props) {
               <p className="mb-2 text-caption font-bold tracking-[0.18em] text-neutral-400 uppercase">
                 Группы обучения
               </p>
-              <ul className="space-y-1.5">
+              <ul className="flex flex-col gap-1.5">
                 {program.variants.map((v) => (
                   <li key={v} className="text-sm text-neutral-600">
                     · {v}
@@ -119,7 +113,7 @@ export function ProgramItem({ program, index, onOpen }: Props) {
               <p className="mb-2 text-caption font-bold tracking-[0.18em] text-neutral-400 uppercase">
                 Форма обучения
               </p>
-              <ul className="space-y-1.5">
+              <ul className="flex flex-col gap-1.5">
                 {program.formats.map((f) => (
                   <li key={f} className="text-sm text-neutral-600">
                     · {f}

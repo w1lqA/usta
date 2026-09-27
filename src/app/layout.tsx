@@ -5,6 +5,7 @@ import "./globals.css";
 import { Header } from "@/widgets/header";
 import { Footer } from "@/widgets/footer";
 import { AnimatedCursor } from "../shared/ui/cursor";
+import { FloatingContact } from "../widgets/floating-contact";
 
 const montserrat = Montserrat({
   subsets: ["cyrillic", "latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Header />
         <main>{children}</main>
         <Footer />
+        <FloatingContact />
       </body>
     </html>
   );
