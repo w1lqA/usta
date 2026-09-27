@@ -3,3 +3,4 @@ export * from "./container";
 export * from "./section";
 export * from "./typography";
 export * from "./input";
+export * from "./page-placeholder";

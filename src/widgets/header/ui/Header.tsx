@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Container, Button } from "@/shared/ui";
 import { cn } from "@/shared/lib";
 import { navLinks } from "../model/nav-links";
@@ -13,9 +13,10 @@ const PHONE = "+7 (999) 870-74-05";
 const PHONE_HREF = "tel:+79998707405";
 
 export function Header() {
-  const pathname = usePathname() ?? "/";
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -26,6 +27,7 @@ export function Header() {
 
   useEffect(() => {
     setMenuOpen(false);
+    setOpenDropdown(null);
   }, [pathname]);
 
   useEffect(() => {
@@ -65,18 +67,74 @@ export function Header() {
 
           <nav className="hidden items-center gap-8 lg:flex">
             {navLinks.map((item) => {
-              const isActive = pathname.startsWith(item.href);
+              const isActive =
+                item.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(item.href);
+
+              if (!item.children) {
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={cn(
+                      "text-sm font-medium text-neutral-700 transition-colors hover:text-brand-primary",
+                      isActive && "text-brand-primary",
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              }
+
               return (
-                <Link
+                <div
                   key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "text-sm font-medium text-neutral-700 transition-colors hover:text-brand-primary",
-                    isActive && "text-brand-primary",
-                  )}
+                  className="relative"
+                  onMouseEnter={() => setOpenDropdown(item.href)}
+                  onMouseLeave={() => setOpenDropdown(null)}
                 >
-                  {item.label}
-                </Link>
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "flex items-center gap-1.5 text-sm font-medium text-neutral-700 transition-colors hover:text-brand-primary",
+                      isActive && "text-brand-primary",
+                    )}
+                    aria-haspopup="true"
+                    aria-expanded={openDropdown === item.href}
+                  >
+                    {item.label}
+                    <ChevronDown
+                      size={14}
+                      className={cn(
+                        "transition-transform duration-200",
+                        openDropdown === item.href && "rotate-180",
+                      )}
+                    />
+                  </Link>
+
+                  <div
+                    className={cn(
+                      "absolute left-0 top-full pt-3",
+                      "transition-all duration-200",
+                      openDropdown === item.href
+                        ? "pointer-events-auto translate-y-0 opacity-100"
+                        : "pointer-events-none -translate-y-1 opacity-0",
+                    )}
+                  >
+                    <div className="glass min-w-[15rem] rounded-lg border border-border py-2 shadow-md">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className="block px-5 py-2.5 text-sm text-neutral-700 transition-colors hover:bg-neutral-100 hover:text-brand-primary"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               );
             })}
           </nav>

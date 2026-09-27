@@ -1,2 +1,2 @@
-export type { Program } from "./model/types";
-export { programs } from "./model/programs";
+export type { Program, ProgramBreakdown } from "./model/types";
+export { programs, getProgram, getProgramsByCategory } from "./model/programs";

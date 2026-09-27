@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { Phone } from "lucide-react";
+import { Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/shared/ui";
 import { cn } from "@/shared/lib";
 import { navLinks } from "../model/nav-links";
@@ -13,6 +14,8 @@ type MobileMenuProps = {
 };
 
 export function MobileMenu({ open, phone, phoneHref }: MobileMenuProps) {
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
+
   return (
     <div
       className={cn(
@@ -27,15 +30,64 @@ export function MobileMenu({ open, phone, phoneHref }: MobileMenuProps) {
       aria-hidden={!open}
     >
       <nav className="flex flex-col">
-        {navLinks.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className="border-b border-border py-4 text-lg font-medium text-neutral-900"
-          >
-            {item.label}
-          </Link>
-        ))}
+        {navLinks.map((item) => {
+          if (!item.children) {
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="border-b border-border py-4 text-lg font-medium text-neutral-900"
+              >
+                {item.label}
+              </Link>
+            );
+          }
+
+          const isOpen = openGroup === item.href;
+
+          return (
+            <div key={item.href} className="border-b border-border">
+              <button
+                type="button"
+                onClick={() => setOpenGroup(isOpen ? null : item.href)}
+                className="flex w-full items-center justify-between py-4 text-lg font-medium text-neutral-900"
+                aria-expanded={isOpen}
+              >
+                {item.label}
+                <ChevronDown
+                  size={18}
+                  className={cn(
+                    "transition-transform duration-200",
+                    isOpen && "rotate-180",
+                  )}
+                />
+              </button>
+
+              <div
+                className={cn(
+                  "grid transition-all duration-300",
+                  isOpen
+                    ? "grid-rows-[1fr] opacity-100"
+                    : "grid-rows-[0fr] opacity-0",
+                )}
+              >
+                <div className="overflow-hidden">
+                  <div className="flex flex-col pb-3 pl-4">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className="py-2.5 text-base text-neutral-600"
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </nav>
 
       <a
