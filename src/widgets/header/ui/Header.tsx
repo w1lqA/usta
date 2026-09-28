@@ -42,17 +42,21 @@ export function Header() {
       <header
         className={cn(
           "sticky top-0 z-[100] h-(--header-height) w-full",
-          "glass-soft border-b border-border transition-fast",
-          scrolled && "shadow-sm",
+          "border-b transition-all duration-300",
+          "backdrop-blur-xl backdrop-saturate-150",
+          scrolled
+            ? "border-neutral-200/80 bg-white/85 shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_8px_24px_rgba(8,14,20,0.06)]"
+            : "border-white/40 bg-white/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)]",
         )}
       >
         <Container className="flex h-full items-center justify-between">
+          {/* Logo */}
           <Link
             href="/"
             className="flex items-center gap-3"
             onClick={() => setMenuOpen(false)}
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-sm bg-brand-accent text-caption font-bold text-white">
+            <span className="flex h-8 w-8 items-center justify-center rounded-sm bg-brand-accent text-caption font-bold text-white transition-transform duration-300 hover:scale-105">
               УЦ
             </span>
             <span className="leading-none">
@@ -65,6 +69,7 @@ export function Header() {
             </span>
           </Link>
 
+          {/* Nav */}
           <nav className="hidden items-center gap-8 lg:flex">
             {navLinks.map((item) => {
               const isActive =
@@ -78,11 +83,19 @@ export function Header() {
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      "text-sm font-medium text-neutral-700 transition-colors hover:text-brand-primary",
-                      isActive && "text-brand-primary",
+                      "group relative text-sm font-medium transition-colors duration-200",
+                      isActive
+                        ? "text-brand-primary"
+                        : "text-neutral-700 hover:text-brand-primary",
                     )}
                   >
                     {item.label}
+                    <span
+                      className={cn(
+                        "absolute -bottom-1 left-0 h-[2px] bg-brand-accent transition-all duration-300",
+                        isActive ? "w-full" : "w-0 group-hover:w-full",
+                      )}
+                    />
                   </Link>
                 );
               }
@@ -97,8 +110,10 @@ export function Header() {
                   <Link
                     href={item.href}
                     className={cn(
-                      "flex items-center gap-1.5 text-sm font-medium text-neutral-700 transition-colors hover:text-brand-primary",
-                      isActive && "text-brand-primary",
+                      "group relative flex items-center gap-1.5 text-sm font-medium transition-colors duration-200",
+                      isActive
+                        ? "text-brand-primary"
+                        : "text-neutral-700 hover:text-brand-primary",
                     )}
                     aria-haspopup="true"
                     aria-expanded={openDropdown === item.href}
@@ -111,8 +126,17 @@ export function Header() {
                         openDropdown === item.href && "rotate-180",
                       )}
                     />
+                    <span
+                      className={cn(
+                        "absolute -bottom-1 left-0 h-[2px] bg-brand-accent transition-all duration-300",
+                        isActive || openDropdown === item.href
+                          ? "w-full"
+                          : "w-0 group-hover:w-full",
+                      )}
+                    />
                   </Link>
 
+                  {/* Dropdown */}
                   <div
                     className={cn(
                       "absolute left-0 top-full pt-3",
@@ -122,12 +146,12 @@ export function Header() {
                         : "pointer-events-none -translate-y-1 opacity-0",
                     )}
                   >
-                    <div className="glass min-w-[15rem] rounded-lg border border-border py-2 shadow-md">
+                    <div className="min-w-[15rem] rounded-lg border border-white/50 bg-white/85 py-2 shadow-lg backdrop-blur-xl backdrop-saturate-150">
                       {item.children.map((child) => (
                         <Link
                           key={child.href}
                           href={child.href}
-                          className="block px-5 py-2.5 text-sm text-neutral-700 transition-colors hover:bg-neutral-100 hover:text-brand-primary"
+                          className="block px-5 py-2.5 text-sm text-neutral-700 transition-colors hover:bg-white/60 hover:text-brand-primary"
                         >
                           {child.label}
                         </Link>
@@ -139,6 +163,7 @@ export function Header() {
             })}
           </nav>
 
+          {/* Actions */}
           <div className="hidden items-center gap-5 lg:flex">
             <a
               href={PHONE_HREF}
@@ -152,10 +177,11 @@ export function Header() {
             </Button>
           </div>
 
+          {/* Burger */}
           <button
             type="button"
             onClick={() => setMenuOpen((value) => !value)}
-            className="flex h-10 w-10 items-center justify-center rounded-sm text-neutral-900 lg:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-sm text-neutral-900 transition-colors hover:bg-white/50 lg:hidden"
             aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
             aria-expanded={menuOpen}
           >
