@@ -51,7 +51,6 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/features/map/types/**/*.d.ts",
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [

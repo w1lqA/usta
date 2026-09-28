@@ -1,4 +1,8 @@
-export const mapCustomization = [
+import type { YMapDefaultSchemeLayerProps } from "@yandex/ymaps3-types";
+
+type Customization = NonNullable<YMapDefaultSchemeLayerProps["customization"]>;
+
+export const mapCustomization: Customization = [
     {
         "tags": "country",
         "elements": "geometry.fill",
