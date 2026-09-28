@@ -54,9 +54,7 @@ export function Hero() {
         );
       })}
 
-      {/* Content overlay — constrained to Container width */}
       <Container className="pointer-events-none relative h-full">
-        {/* Panel — bottom left */}
         <div className="pointer-events-auto absolute bottom-14 left-0 w-[min(30rem,88%)]">
           <div className="relative">
             {slides.map((slide, idx) => (

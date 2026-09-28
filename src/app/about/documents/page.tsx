@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { PagePlaceholder } from "@/shared/ui";
+import { DocumentsPage } from "@/views/about-documents";
 
 export const metadata: Metadata = {
   title: "Документы — УЦ УСТА",
-  description: "Документы учебного центра «УСТА»",
+  description:
+    "Прайс-лист, реквизиты, перечень образовательных программ и другие документы АНО ДПО УЦ «УСТА».",
 };
 
-export default function DocumentsPage() {
-  return (
-    <PagePlaceholder
-      title="Документы"
-      description="Прайс-лист, реквизиты и другие документы учебного центра."
-    />
-  );
+export default function Page() {
+  return <DocumentsPage />;
 }

@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { PagePlaceholder } from "@/shared/ui";
+import { ContactsPage } from "@/views/contacts";
 
 export const metadata: Metadata = {
   title: "Контакты — УЦ УСТА",
-  description: "Контактная информация учебного центра «УСТА»",
+  description:
+    "Контактная информация учебного центра «УСТА»: адреса, телефоны, email, форма обратной связи и карта.",
 };
 
-export default function ContactsPage() {
-  return (
-    <PagePlaceholder
-      title="Контакты"
-      description="Адреса, телефоны, email и форма обратной связи."
-    />
-  );
+export default function Page() {
+  return <ContactsPage />;
 }

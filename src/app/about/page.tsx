@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { PagePlaceholder } from "@/shared/ui";
+import { AboutPage } from "@/views/about";
 
 export const metadata: Metadata = {
   title: "О центре — УЦ УСТА",
-  description: "Сведения об учебном центре «УСТА»",
+  description:
+    "Сведения об АНО ДПО УЦ «УСТА»: лицензия, уровни образования, формы обучения, образовательные программы, контактная информация.",
 };
 
-export default function AboutPage() {
-  return (
-    <PagePlaceholder
-      title="Сведения об организации"
-      description="Информация об АНО ДПО УЦ «УСТА»."
-    />
-  );
+export default function Page() {
+  return <AboutPage />;
 }

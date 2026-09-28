@@ -37,7 +37,7 @@ export function ProgramCard({ category }: Props) {
       </div>
 
       <div className="flex flex-1 flex-col px-7 py-6">
-        <h3 className="mb-4 flex-1 text-xl leading-snug font-bold text-dark-900 transition-colors group-hover:text-brand-primary lg:text-2xl">
+        <h3 className="flex-1 mb-2 text-xl leading-snug font-bold text-dark-900 transition-colors group-hover:text-brand-primary lg:text-2xl">
           {category.title}
         </h3>
         <p className="mb-5 text-sm leading-relaxed text-neutral-500 line-clamp-2">

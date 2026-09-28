@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { PagePlaceholder } from "@/shared/ui";
+import { LicensesPage } from "@/views/about-licenses";
 
 export const metadata: Metadata = {
   title: "Лицензия и сертификаты — УЦ УСТА",
-  description: "Лицензия и сертификаты учебного центра «УСТА»",
+  description:
+    "Лицензия на образовательную деятельность и сертификаты АНО ДПО УЦ «УСТА».",
 };
 
-export default function LicensesPage() {
-  return (
-    <PagePlaceholder
-      title="Лицензия и сертификаты"
-      description="Подтверждающие документы учебного центра."
-    />
-  );
+export default function Page() {
+  return <LicensesPage />;
 }

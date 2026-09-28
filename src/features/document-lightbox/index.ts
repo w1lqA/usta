@@ -1,0 +1,1 @@
+export { DocumentLightbox } from "./ui/DocumentLightbox";

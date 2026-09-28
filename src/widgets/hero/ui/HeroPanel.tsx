@@ -26,16 +26,13 @@ export function HeroPanel({ slide, isActive }: Props) {
           "w-full px-8 py-7 shadow-lg",
         )}
       >
-        {/* Label */}
-        <p className="text-label mb-3 text-brand-accent">{slide.label}</p>
+        <p className="text-label text-brand-accent">{slide.label}</p>
 
-        {/* Title */}
-        <TitleTag className="text-hero mb-5 font-extrabold leading-none text-dark-900">
+        <TitleTag className="text-hero font-extrabold leading-none text-dark-900">
           {slide.title}
         </TitleTag>
 
-        {/* Checklist */}
-        <ul className="mb-6 flex flex-col gap-2">
+        <ul className="flex flex-col gap-2 my-2">
           {slide.checklist.map((item) => (
             <li key={item} className="flex items-start gap-2.5">
               <span className="mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-brand-accent/10">
@@ -52,7 +49,6 @@ export function HeroPanel({ slide, isActive }: Props) {
           ))}
         </ul>
 
-        {/* CTA */}
         <Link
           href={`/programs/${slide.slug}`}
           className="btn btn-primary w-fit rounded-md"
