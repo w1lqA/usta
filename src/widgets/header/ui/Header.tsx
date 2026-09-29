@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import { Container, Button } from "@/shared/ui";
-import { cn } from "@/shared/lib";
+import { cn, springSoft } from "@/shared/lib";
 import { navLinks } from "../model/nav-links";
 import { MobileMenu } from "./MobileMenu";
 
@@ -17,6 +18,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -39,10 +41,13 @@ export function Header() {
 
   return (
     <>
-      <header
+      <motion.header
+        initial={shouldReduceMotion ? false : { y: "-100%", opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={shouldReduceMotion ? { duration: 0 } : springSoft}
         className={cn(
           "sticky top-0 z-[100] h-(--header-height) w-full",
-          "border-b transition-all duration-300",
+          "border-b transition-[background-color,border-color,box-shadow] duration-300",
           "backdrop-blur-xl backdrop-saturate-150",
           scrolled
             ? "border-neutral-200/80 bg-white/85 shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_8px_24px_rgba(8,14,20,0.06)]"
@@ -136,10 +141,9 @@ export function Header() {
                     />
                   </Link>
 
-                  {/* Dropdown */}
                   <div
                     className={cn(
-                      "absolute left-0 top-full pt-3",
+                      "absolute top-full left-0 pt-3",
                       "transition-all duration-200",
                       openDropdown === item.href
                         ? "pointer-events-auto translate-y-0 opacity-100"
@@ -188,7 +192,7 @@ export function Header() {
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </Container>
-      </header>
+      </motion.header>
 
       <MobileMenu open={menuOpen} phone={PHONE} phoneHref={PHONE_HREF} />
     </>

@@ -9,7 +9,7 @@ export function ContactsPage() {
       <ContactsHero />
       <ContactsInfo />
       <ContactsMap />
-      <Contact />
+      <Contact variant="page" />
     </>
   );
 }

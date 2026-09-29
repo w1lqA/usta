@@ -55,8 +55,8 @@ export function Hero() {
       })}
 
       <Container className="pointer-events-none relative h-full">
-        <div className="pointer-events-auto absolute bottom-14 left-0 w-[min(30rem,88%)]">
-          <div className="relative">
+        <div className="pointer-events-auto absolute bottom-14 left-0 max-w-[min(38rem,88%)]">
+          <div className="relative w-fit">
             {slides.map((slide, idx) => (
               <HeroPanel
                 key={slide.id}

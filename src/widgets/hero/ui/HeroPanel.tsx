@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import type { HeroSlide } from "../model/slides";
-import { cn } from "@/shared/lib";
+import { cn, springSoft } from "@/shared/lib";
 
 type Props = {
   slide: HeroSlide;
@@ -10,37 +13,43 @@ type Props = {
 
 export function HeroPanel({ slide, isActive }: Props) {
   const TitleTag: "h1" | "h2" = isActive ? "h1" : "h2";
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <div
       className={cn(
-        "w-full max-w-[30rem] transition-all duration-700",
+        "w-fit max-w-full transition-all duration-700",
         isActive
           ? "translate-y-0 opacity-100"
           : "pointer-events-none absolute inset-0 translate-y-[1.125rem] opacity-0",
       )}
     >
-      <div
+      <motion.div
+        initial={
+          shouldReduceMotion ? false : { opacity: 0, y: 40, scale: 0.98 }
+        }
+        animate={
+          isActive
+            ? { opacity: 1, y: 0, scale: 1 }
+            : { opacity: 0, y: 40, scale: 0.98 }
+        }
+        transition={shouldReduceMotion ? { duration: 0 } : springSoft}
         className={cn(
-          "glass flex flex-col gap-4 rounded-3xl border-l-[0.1875rem] border-l-brand-accent",
-          "w-full px-8 py-7 shadow-lg",
+          "glass flex w-fit max-w-full flex-col gap-5 rounded-3xl border-l-[0.1875rem] border-l-brand-accent",
+          "px-7 py-7 shadow-lg sm:px-9 sm:py-8",
         )}
       >
         <p className="text-label text-brand-accent">{slide.label}</p>
 
-        <TitleTag className="text-hero font-extrabold leading-none text-dark-900">
+        <TitleTag className="max-w-[20ch] text-[clamp(1.75rem,4vw,3.5rem)] leading-[1.05] mt-1 mb-2 font-extrabold text-dark-900">
           {slide.title}
         </TitleTag>
 
-        <ul className="flex flex-col gap-2 my-2">
+        <ul className="flex flex-col gap-2.5 mb-4">
           {slide.checklist.map((item) => (
             <li key={item} className="flex items-start gap-2.5">
               <span className="mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-brand-accent/10">
-                <Check
-                  size={9}
-                  className="text-brand-accent"
-                  strokeWidth={3}
-                />
+                <Check size={9} className="text-brand-accent" strokeWidth={3} />
               </span>
               <span className="text-sm leading-snug text-neutral-600">
                 {item}
@@ -56,7 +65,7 @@ export function HeroPanel({ slide, isActive }: Props) {
           Смотреть направление
           <ArrowRight size={14} />
         </Link>
-      </div>
+      </motion.div>
     </div>
   );
 }

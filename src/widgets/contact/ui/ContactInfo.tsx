@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { Phone, Mail, Clock, MapPin, ArrowUpRight } from "lucide-react";
 
+type Variant = "home" | "page";
+
+type Props = {
+  variant?: Variant;
+};
+
 const rows = [
   {
     icon: Phone,
@@ -67,7 +73,7 @@ const rows = [
   },
 ] as const;
 
-export function ContactInfo() {
+export function ContactInfo({ variant = "home" }: Props) {
   return (
     <div>
       <h2 className="mb-6 text-3xl leading-[1.05] font-extrabold text-white lg:text-6xl">
@@ -95,15 +101,17 @@ export function ContactInfo() {
         ))}
       </div>
 
-      <div className="mt-10">
-        <Link
-          href="/contacts"
-          className="inline-flex items-center gap-2.5 text-sm font-semibold text-brand-green transition-all hover:gap-4"
-        >
-          Страница контактов
-          <ArrowUpRight size={15} />
-        </Link>
-      </div>
+      {variant === "home" && (
+        <div className="mt-10">
+          <Link
+            href="/contacts"
+            className="inline-flex items-center gap-2.5 text-sm font-semibold text-brand-green transition-all hover:gap-4"
+          >
+            Страница контактов
+            <ArrowUpRight size={15} />
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

@@ -9,7 +9,7 @@ const EMAIL = "info@usta.com.ru";
 
 export function ContactsInfo() {
   return (
-    <Section padding="default" surface="surface">
+    <Section padding="none" className="pt-20" surface="surface">
       <Container>
         <div className="mb-14 max-w-[44rem]">
           <div className="mb-5 flex items-center gap-4">

@@ -18,10 +18,13 @@ const rows = [
 
 export function LicenseInfo({ onOpen }: Props) {
   return (
-    <div className="flex flex-col justify-center border-white/10 px-10 py-20 lg:border-r lg:px-16 lg:py-28">
-      <p className="text-caption mb-8 font-bold tracking-[0.24em] text-brand-green uppercase">
-        ЛИЦЕНЗИЯ
-      </p>
+    <div className="flex flex-col justify-center border-white/10 py-20 lg:border-r lg:py-28 pr-10 lg:pr-16">
+      <div className="mb-12 flex items-center gap-4">
+        <div className="h-px w-8 bg-brand-green" />
+        <span className="text-caption font-bold uppercase text-neutral-500 tracking-[0.22em]">
+          ЛИЦЕНЗИЯ
+        </span>
+      </div>
 
       <h2 className="mb-6 text-3xl leading-[1.1] font-extrabold text-white lg:text-5xl">
         Образовательная деятельность
@@ -35,7 +38,7 @@ export function LicenseInfo({ onOpen }: Props) {
         силу и признаются работодателями по всей России.
       </p>
 
-      <div className="mb-12 space-y-5">
+      <div className="mb-12 space-y-5 max-w-[40rem]">
         {rows.map((row) => (
           <div key={row.label} className="flex items-baseline gap-4">
             <span className="w-[8.5rem] flex-shrink-0 text-caption font-semibold tracking-wide text-white/30 uppercase">
@@ -58,7 +61,7 @@ export function LicenseInfo({ onOpen }: Props) {
           Посмотреть лицензию
         </button>
         <Link
-          href="/licenses"
+          href="/about/documents"
           className="flex items-center gap-2 border border-white/25 px-7 py-3.5 text-xs font-semibold text-white transition-colors hover:border-white/50"
         >
           Все документы

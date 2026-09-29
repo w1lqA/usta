@@ -1,4 +1,8 @@
+"use client";
+
+import { motion, useReducedMotion } from "motion/react";
 import { GraduationCap, ShieldCheck, Building2, FileText } from "lucide-react";
+import { fadeUpVariants, springSoft, staggerContainer } from "@/shared/lib";
 
 const advantages = [
   { icon: GraduationCap, label: "Высокая скорость подготовки" },
@@ -8,19 +12,29 @@ const advantages = [
 ] as const;
 
 export function AboutAdvantages() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <div className="mt-12 mb-14 grid max-w-[30rem] grid-cols-2 gap-x-10 gap-y-6">
+    <motion.div
+      initial={shouldReduceMotion ? false : "hidden"}
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.4 }}
+      variants={staggerContainer(0.06, 0.2)}
+      className="grid max-w-[30rem] grid-cols-2 gap-4"
+    >
       {advantages.map(({ icon: Icon, label }) => (
-        <div key={label} className="flex items-start gap-3">
-          <Icon
-            size={16}
-            className="mt-0.5 flex-shrink-0 text-brand-accent"
-          />
-          <span className="text-sm font-medium leading-snug text-neutral-700">
-            {label}
+        <motion.div
+          key={label}
+          variants={fadeUpVariants}
+          transition={shouldReduceMotion ? { duration: 0 } : springSoft}
+          className="flex items-center gap-4"
+        >
+          <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-brand-accent/5">
+            <Icon size={17} className="text-brand-accent" />
           </span>
-        </div>
+          <span className="text-sm font-medium text-neutral-700">{label}</span>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 }

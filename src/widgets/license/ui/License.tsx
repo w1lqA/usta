@@ -12,10 +12,12 @@ export function License() {
   return (
     <section className="bg-brand-primary">
       <Container>
-        <div className="grid grid-cols-1 items-stretch lg:grid-cols-2">
-          <LicenseInfo onOpen={() => setOpen(true)} />
+        <div className="flex flex-col lg:flex-row">
+          <div className="flex min-w-0 lg:flex-[1.618]">
+            <LicenseInfo onOpen={() => setOpen(true)} />
+          </div>
 
-          <div className="flex items-center justify-center px-10 py-20 lg:px-16 lg:py-28">
+          <div className="flex min-w-0 items-center justify-center pl-10 py-20 lg:flex-1 lg:py-28">
             <LicensePreview onOpen={() => setOpen(true)} />
           </div>
         </div>

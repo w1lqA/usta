@@ -6,13 +6,16 @@ import { ProgramCard } from "./ProgramCard";
 
 export function Programs() {
   return (
-    <Section surface="subtle" padding="lg">
+    <Section surface="subtle" padding="default">
       <Container>
         <div className="mb-14 flex items-end justify-between border-b border-neutral-300 pb-8">
           <div>
-            <p className="mb-4 text-caption font-bold tracking-[0.22em] text-neutral-500 uppercase">
-              Обучение
-            </p>
+            <div className="mb-4 flex items-center gap-4">
+              <div className="h-px w-8 bg-brand-accent" />
+              <span className="text-caption font-bold uppercase tracking-[0.22em] text-neutral-500">
+                Обучение
+              </span>
+            </div>
             <Heading
               as="h2"
               level="heading-lg"
@@ -46,6 +49,6 @@ export function Programs() {
           </Link>
         </div>
       </Container>
-    </Section>
+    </Section >
   );
 }

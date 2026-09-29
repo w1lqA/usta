@@ -127,9 +127,6 @@
   --tracking-wide: 0.025em;
   --tracking-label: 0.06em;
 
-  /* Hero-specific */
-  --text-hero: clamp(1.5rem, 5.5vw, 2rem);   /* 40px → 80px */
-
   --hero-min-height: 42.5rem;                /* 680px */
   --hero-max-height: 53.75rem;               /* 860px */
   --text-micro: 0.625rem;   /* 10px */
@@ -207,7 +204,6 @@
   --ease-enter: var(--ease-enter);
   --ease-exit: var(--ease-exit);
 
-  --text-hero: var(--text-hero);
   --text-micro: var(--text-micro);
 
   --spacing-header: var(--header-height);

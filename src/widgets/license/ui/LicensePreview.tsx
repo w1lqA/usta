@@ -10,7 +10,7 @@ export function LicensePreview({ onOpen }: Props) {
   return (
     <button
       onClick={onOpen}
-      className="group relative w-full max-w-[17.5rem]"
+      className="group relative w-full max-w-[32rem]"
       style={{ aspectRatio: "1/1.41" }}
       aria-label="Открыть лицензию"
     >
