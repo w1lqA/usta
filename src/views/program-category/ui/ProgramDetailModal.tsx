@@ -1,56 +1,43 @@
 "use client";
 
-import Link from "next/link";
-import { X, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import type { Program } from "@/entities/program";
+import { Modal } from "@/shared/ui";
 
 type Props = {
   program: Program | null;
   onClose: () => void;
+  onContact: () => void;
 };
 
 function formatBreakdown(program: Program): string[] {
   const rows: string[] = [];
   const { breakdown } = program;
-
   if (breakdown.theory) rows.push(`${breakdown.theory} ч. — теоретическое обучение`);
   if (breakdown.practice) rows.push(`${breakdown.practice} ч. — практические занятия`);
   if (breakdown.internship) rows.push(`${breakdown.internship} ч. — стажировка`);
   if (breakdown.exam) rows.push(`${breakdown.exam} ч. — итоговая аттестация`);
-
   return rows;
 }
 
-export function ProgramDetailModal({ program, onClose }: Props) {
-  if (!program) return null;
+export function ProgramDetailModal({ program, onClose, onContact }: Props) {
+  const open = Boolean(program);
+  const breakdown = program ? formatBreakdown(program) : [];
 
-  const breakdown = formatBreakdown(program);
+  const handleContact = () => {
+    onClose();
+    onContact();
+  };
 
   return (
-    <div
-      className="fixed inset-0 z-(--z-modal) flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
-      onClick={onClose}
+    <Modal
+      open={open}
+      onClose={onClose}
+      title={program?.title}
+      className="max-w-2xl"
     >
-      <div
-        className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-3xl bg-white"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Header */}
-        <div className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-neutral-100 bg-white px-7 py-5">
-          <h3 className="text-base font-bold text-neutral-900 lg:text-lg">
-            {program.title}
-          </h3>
-          <button
-            onClick={onClose}
-            aria-label="Закрыть"
-            className="flex-shrink-0 text-neutral-400 transition-colors hover:text-neutral-700"
-          >
-            <X size={20} />
-          </button>
-        </div>
-
-        {/* Body */}
-        <div className="px-7 py-7">
+      {program && (
+        <>
           {/* Photo */}
           <div className="mb-7 overflow-hidden rounded-2xl">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -75,9 +62,8 @@ export function ProgramDetailModal({ program, onClose }: Props) {
             <p className="mb-5 text-3xl font-extrabold text-brand-primary">
               {program.hours} ч.
             </p>
-
             {breakdown.length > 0 && (
-              <ul className="space-y-2">
+              <ul className="flex flex-col gap-2">
                 {breakdown.map((row) => (
                   <li
                     key={row}
@@ -89,7 +75,6 @@ export function ProgramDetailModal({ program, onClose }: Props) {
                 ))}
               </ul>
             )}
-
             {program.duration && (
               <p className="mt-4 text-sm text-neutral-500">
                 Обучение рассчитано на {program.duration}
@@ -103,7 +88,7 @@ export function ProgramDetailModal({ program, onClose }: Props) {
               <p className="mb-3 text-caption font-bold tracking-[0.18em] text-neutral-400 uppercase">
                 Форма обучения
               </p>
-              <ul className="space-y-2">
+              <ul className="flex flex-col gap-2">
                 {program.formats.map((f) => (
                   <li
                     key={f}
@@ -123,7 +108,7 @@ export function ProgramDetailModal({ program, onClose }: Props) {
               <p className="mb-3 text-caption font-bold tracking-[0.18em] text-neutral-400 uppercase">
                 Группы обучения
               </p>
-              <ul className="space-y-2">
+              <ul className="flex flex-col gap-2">
                 {program.variants.map((v) => (
                   <li
                     key={v}
@@ -151,17 +136,17 @@ export function ProgramDetailModal({ program, onClose }: Props) {
             <p className="mb-4 text-sm text-neutral-500">
               Хотите записаться на программу или уточнить детали?
             </p>
-            <Link
-              href="/contacts"
-              onClick={onClose}
+            <button
+              type="button"
+              onClick={handleContact}
               className="btn btn-primary w-full rounded-md"
             >
               Оставить заявку
               <ArrowRight size={15} />
-            </Link>
+            </button>
           </div>
-        </div>
-      </div>
-    </div>
+        </>
+      )}
+    </Modal>
   );
 }

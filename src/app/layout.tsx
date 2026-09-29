@@ -20,14 +20,15 @@ export const metadata: Metadata = {
 };
 
 
-
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru" className={montserrat.variable}>
       <body>
         <AnimatedCursor />
         <Header />
-        <main>{children}</main>
+        <main className="pt-(--header-height)">{children}</main>
         <Footer />
         <FloatingContact />
       </body>

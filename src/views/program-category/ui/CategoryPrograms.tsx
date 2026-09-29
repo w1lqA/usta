@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { Program } from "@/entities/program";
 import { Container, Section } from "@/shared/ui";
+import { ContactFormModal } from "@/features/contact-form";
 import { ProgramItem } from "./ProgramItem";
 import { ProgramDetailModal } from "./ProgramDetailModal";
 
@@ -12,6 +13,7 @@ type Props = {
 
 export function CategoryPrograms({ programs }: Props) {
   const [activeProgram, setActiveProgram] = useState<Program | null>(null);
+  const [contactOpen, setContactOpen] = useState(false);
 
   if (programs.length === 0) {
     return (
@@ -54,6 +56,12 @@ export function CategoryPrograms({ programs }: Props) {
       <ProgramDetailModal
         program={activeProgram}
         onClose={() => setActiveProgram(null)}
+        onContact={() => setContactOpen(true)}
+      />
+
+      <ContactFormModal
+        open={contactOpen}
+        onClose={() => setContactOpen(false)}
       />
     </Section>
   );

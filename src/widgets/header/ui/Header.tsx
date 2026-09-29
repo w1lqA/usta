@@ -7,6 +7,7 @@ import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { Container, Button } from "@/shared/ui";
 import { cn, springSoft } from "@/shared/lib";
+import { ContactFormModal } from "@/features/contact-form";
 import { navLinks } from "../model/nav-links";
 import { MobileMenu } from "./MobileMenu";
 
@@ -18,6 +19,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [contactModalOpen, setContactModalOpen] = useState(false);
   const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
@@ -46,7 +48,7 @@ export function Header() {
         animate={{ y: 0, opacity: 1 }}
         transition={shouldReduceMotion ? { duration: 0 } : springSoft}
         className={cn(
-          "sticky top-0 z-[100] h-(--header-height) w-full",
+          "fixed top-0 right-0 left-0 z-[100] h-(--header-height) w-full",
           "border-b transition-[background-color,border-color,box-shadow] duration-300",
           "backdrop-blur-xl backdrop-saturate-150",
           scrolled
@@ -176,7 +178,11 @@ export function Header() {
               <Phone size={15} className="text-brand-accent" />
               {PHONE}
             </a>
-            <Button href="/contacts" size="sm">
+            <Button
+              type="button"
+              size="sm"
+              onClick={() => setContactModalOpen(true)}
+            >
               Оставить заявку
             </Button>
           </div>
@@ -195,6 +201,11 @@ export function Header() {
       </motion.header>
 
       <MobileMenu open={menuOpen} phone={PHONE} phoneHref={PHONE_HREF} />
+
+      <ContactFormModal
+        open={contactModalOpen}
+        onClose={() => setContactModalOpen(false)}
+      />
     </>
   );
 }

@@ -109,3 +109,22 @@ export function staggerContainer(
 export const reducedMotionTransition: Transition = {
   duration: 0.01,
 };
+
+
+/** Появление с лёгким вращением — для документов, «физических» объектов. */
+export const fadeScaleInVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.96, y: 24 },
+  visible: { opacity: 1, scale: 1, y: 0 },
+};
+
+/** Появление с лёгким наклоном — для документов. */
+export const documentVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.96, y: 30, rotate: -1 },
+  visible: { opacity: 1, scale: 1, y: 0, rotate: 0 },
+};
+
+/** Простое появление с масштабом без движения. */
+export const scaleInVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.96 },
+  visible: { opacity: 1, scale: 1 },
+};

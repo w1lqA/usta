@@ -1,8 +1,13 @@
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
 import { Phone, ArrowRight } from "lucide-react";
 import { Container, Section, Button } from "@/shared/ui";
+import { ContactFormModal } from "@/features/contact-form";
 
 export function ProgramsCTA() {
+  const [contactModalOpen, setContactModalOpen] = useState(false);
+
   return (
     <Section padding="default" surface="surface">
       <Container>
@@ -20,18 +25,17 @@ export function ProgramsCTA() {
                 индивидуальную программу обучения под задачи вашей организации.
               </p>
             </div>
-
-            <div className="flex flex-col gap-3 lg:col-span-4 lg:items-end">
+            <div className="mx-auto flex w-full max-w-max flex-col items-center gap-3 lg:col-span-4 lg:mx-0 lg:justify-self-end">
               <Button
-                href="/contacts"
+                type="button"
                 variant="secondary"
                 size="default"
                 icon={<ArrowRight size={16} />}
                 className="w-full lg:w-auto"
+                onClick={() => setContactModalOpen(true)}
               >
                 Оставить заявку
               </Button>
-
               <a
                 href="tel:+79998707405"
                 className="flex items-center gap-2 text-sm font-medium text-white/70 transition-colors hover:text-white"
@@ -43,6 +47,11 @@ export function ProgramsCTA() {
           </div>
         </div>
       </Container>
+
+      <ContactFormModal
+        open={contactModalOpen}
+        onClose={() => setContactModalOpen(false)}
+      />
     </Section>
   );
 }

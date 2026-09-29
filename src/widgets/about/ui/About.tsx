@@ -10,7 +10,7 @@ import {
   useTransform,
 } from "motion/react";
 import { useRef } from "react";
-import { Container, Section, Heading, Text } from "@/shared/ui";
+import { Container, Section, Heading, Text, ActionLink } from "@/shared/ui";
 import {
   fadeInLeftVariants,
   fadeUpVariants,
@@ -114,18 +114,9 @@ export function About() {
                 variants={fadeInLeftVariants}
                 transition={shouldReduceMotion ? { duration: 0 } : springSoft}
               >
-                <Link
-                  href="/about"
-                  className="group inline-flex w-fit items-center gap-2.5 text-sm font-semibold text-brand-primary transition-colors hover:text-brand-accent"
-                >
-                  <span className="border-b border-brand-primary/30 pb-0.5 transition-colors group-hover:border-brand-accent">
-                    Подробнее о центре
-                  </span>
-                  <ArrowRight
-                    size={15}
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                  />
-                </Link>
+                <ActionLink href="/about">
+                  Подробнее о центре
+                </ActionLink>
               </motion.div>
             </motion.div>
 

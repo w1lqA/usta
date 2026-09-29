@@ -5,3 +5,5 @@ export * from "./typography";
 export * from "./input";
 export * from "./page-placeholder";
 export * from "./page-hero";
+export * from "./action-link";
+export * from "./modal";

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Eye } from "lucide-react";
+import { ActionLink } from "@/src/shared/ui";
 
 type Props = {
   onOpen: () => void;
@@ -52,20 +53,21 @@ export function LicenseInfo({ onOpen }: Props) {
         ))}
       </div>
 
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-6">
         <button
           onClick={onOpen}
-          className="flex items-center gap-2.5 rounded-[0.25rem_0_0.25rem] bg-white px-7 py-3.5 text-xs font-bold text-brand-primary transition-opacity hover:opacity-90"
+          className="btn btn-primary btn-sm text-brand-primary! bg-white!"
         >
           <Eye size={14} />
           Посмотреть лицензию
         </button>
-        <Link
+
+        <ActionLink
           href="/about/documents"
-          className="flex items-center gap-2 border border-white/25 px-7 py-3.5 text-xs font-semibold text-white transition-colors hover:border-white/50"
+          tone="light"
         >
           Все документы
-        </Link>
+        </ActionLink>
       </div>
     </div>
   );

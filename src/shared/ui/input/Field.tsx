@@ -7,19 +7,17 @@ export type FieldProps = {
   error?: string;
   required?: boolean;
   className?: string;
+  errorId?: string;
   children: ReactNode;
 };
 
-/**
- * Layout wrapper only — pass an <Input> or <Textarea> as children.
- * Matches .field / .field-label / .field-error from globals.css.
- */
 export function Field({
   label,
   htmlFor,
   error,
   required,
   className,
+  errorId,
   children,
 }: FieldProps) {
   return (
@@ -29,7 +27,11 @@ export function Field({
         {required && " *"}
       </label>
       {children}
-      {error && <p className="field-error">{error}</p>}
+      {error && (
+        <p id={errorId} className="field-error" role="alert">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
