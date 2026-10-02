@@ -5,8 +5,6 @@ import { Phone, Mail, Clock, ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { Container } from "@/shared/ui";
 import {
-  fadeInLeftVariants,
-  fadeInRightVariants,
   fadeUpVariants,
   springGentle,
   staggerContainer,
@@ -32,13 +30,13 @@ export function Footer() {
   return (
     <footer className="bg-dark-footer text-white">
       <Container>
-        {/* ─── Top bar ─── */}
+        {/* Top bar */}
         <motion.div
           initial={shouldReduceMotion ? false : "hidden"}
           whileInView="visible"
           viewport={viewportOnce}
           variants={staggerContainer(0.08, 0)}
-          className="flex items-center justify-between border-b border-white/10 py-8"
+          className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 py-6 sm:py-8"
         >
           <motion.div
             variants={{
@@ -68,31 +66,31 @@ export function Footer() {
             }}
             transition={rt ?? springGentle}
             href={PHONE_PRIMARY_HREF}
-            className="hidden items-center gap-2 text-xs font-semibold text-white/70 transition-colors hover:text-white sm:flex"
+            className="flex items-center gap-2 text-xs font-semibold text-white/70 transition-colors hover:text-white"
           >
             <Phone size={13} className="text-brand-green" />
             {PHONE_PRIMARY}
           </motion.a>
         </motion.div>
 
-        {/* ─── Main grid — 4 columns, stagger 0.07 ─── */}
+        {/* Main grid — 1 col on mobile, 2 on sm, 4 on md */}
         <motion.div
           initial={shouldReduceMotion ? false : "hidden"}
           whileInView="visible"
           viewport={viewportOnce}
           variants={staggerContainer(0.07, 0.1)}
-          className="grid grid-cols-2 gap-8 py-12 md:grid-cols-4 lg:gap-12"
+          className="grid grid-cols-1 gap-8 py-10 sm:grid-cols-2 sm:py-12 md:grid-cols-4 lg:gap-12"
         >
           {/* About */}
           <motion.div
             variants={fadeUpVariants}
             transition={rt ?? springGentle}
-            className="col-span-2 md:col-span-1"
+            className="sm:col-span-2 md:col-span-1"
           >
-            <p className="mb-5 text-caption font-bold tracking-[0.14em] text-white/35 uppercase">
+            <p className="mb-4 text-caption font-bold tracking-[0.14em] text-white/35 uppercase sm:mb-5">
               О центре
             </p>
-            <p className="mb-5 text-xs leading-relaxed text-white/50">
+            <p className="mb-5 max-w-[24rem] text-xs leading-relaxed text-white/50">
               АНО ДПО УЦ «УСТА» — профессиональный учебный центр
               дополнительного профессионального образования.
             </p>
@@ -103,7 +101,7 @@ export function Footer() {
               </div>
               <a
                 href={`mailto:${EMAIL}`}
-                className="flex items-center gap-2 text-xs text-white/45 transition-colors hover:text-white/75"
+                className="flex items-center gap-2 break-all text-xs text-white/45 transition-colors hover:text-white/75"
               >
                 <Mail size={12} className="flex-shrink-0 text-brand-green" />
                 {EMAIL}
@@ -116,7 +114,7 @@ export function Footer() {
             variants={fadeUpVariants}
             transition={rt ?? springGentle}
           >
-            <p className="mb-5 text-caption font-bold tracking-[0.14em] text-white/35 uppercase">
+            <p className="mb-4 text-caption font-bold tracking-[0.14em] text-white/35 uppercase sm:mb-5">
               Обучение
             </p>
             <ul className="flex flex-col gap-2.5">
@@ -138,7 +136,7 @@ export function Footer() {
             variants={fadeUpVariants}
             transition={rt ?? springGentle}
           >
-            <p className="mb-5 text-caption font-bold tracking-[0.14em] text-white/35 uppercase">
+            <p className="mb-4 text-caption font-bold tracking-[0.14em] text-white/35 uppercase sm:mb-5">
               Услуги
             </p>
             <ul className="flex flex-col gap-2.5">
@@ -149,7 +147,7 @@ export function Footer() {
               ))}
             </ul>
 
-            <p className="mt-6 mb-4 text-caption font-bold tracking-[0.14em] text-white/35 uppercase">
+            <p className="mt-6 mb-3 text-caption font-bold tracking-[0.14em] text-white/35 uppercase sm:mb-4">
               Документы
             </p>
             <ul className="flex flex-col gap-2.5">
@@ -171,7 +169,7 @@ export function Footer() {
             variants={fadeUpVariants}
             transition={rt ?? springGentle}
           >
-            <p className="mb-5 text-caption font-bold tracking-[0.14em] text-white/35 uppercase">
+            <p className="mb-4 text-caption font-bold tracking-[0.14em] text-white/35 uppercase sm:mb-5">
               Контакты
             </p>
             <div className="flex flex-col gap-4">
@@ -212,7 +210,7 @@ export function Footer() {
           </motion.div>
         </motion.div>
 
-        {/* ─── Bottom bar — last, quiet ─── */}
+        {/* Bottom bar */}
         <motion.div
           initial={shouldReduceMotion ? false : "hidden"}
           whileInView="visible"
@@ -222,12 +220,12 @@ export function Footer() {
             visible: { opacity: 1, y: 0 },
           }}
           transition={rt ?? { ...springGentle, delay: 0.35 }}
-          className="flex flex-col items-center justify-between gap-3 border-t border-white/8 py-6 sm:flex-row"
+          className="flex flex-col items-center gap-3 border-t border-white/8 py-5 sm:flex-row sm:justify-between sm:py-6"
         >
-          <p className="text-caption text-white/25">
+          <p className="text-center text-caption text-white/25 sm:text-left">
             © {new Date().getFullYear()} АНО ДПО УЦ «УСТА». Все права защищены.
           </p>
-          <div className="flex items-center gap-5">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
             <Link
               href="/privacy"
               className="text-caption text-white/25 transition-colors hover:text-white/50"

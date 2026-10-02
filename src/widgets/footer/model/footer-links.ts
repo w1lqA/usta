@@ -24,7 +24,6 @@ export const serviceItems: string[] = [
 ];
 
 export const documentLinks: FooterLink[] = [
-  { label: "Прайс-лист", href: "/about/documents" },
   { label: "Реквизиты", href: "/about/documents" },
   { label: "Лицензия", href: "/about/licenses" },
   { label: "Политика конф.", href: "/privacy" },

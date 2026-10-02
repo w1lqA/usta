@@ -1,14 +1,12 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import Link from "next/link";
 import { Check, Loader2 } from "lucide-react";
 import { Input, Textarea, Field } from "@/shared/ui";
 import { cn } from "@/shared/lib";
-import {
-  contactFormSchema,
-  type ContactMethod,
-} from "../model/schema";
+import { contactFormSchema, type ContactMethod } from "../model/schema";
+import { sendContactEmail } from "@/src/app/actions/send-contact";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
@@ -52,7 +50,6 @@ export function ContactForm({ compact = false, dark = false }: Props) {
   const handleMethodChange = (method: ContactMethod) => {
     if (method === contactMethod) return;
     setContactMethod(method);
-    // Очищаем ошибку неактивного поля, чтобы не висела под другим инпутом
     setErrors((prev) => {
       const next = { ...prev };
       if (method === "phone") delete next.email;
@@ -64,7 +61,7 @@ export function ContactForm({ compact = false, dark = false }: Props) {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    const result = contactFormSchema.safeParse({
+    const validationResult = contactFormSchema.safeParse({
       name,
       contactMethod,
       phone,
@@ -72,8 +69,8 @@ export function ContactForm({ compact = false, dark = false }: Props) {
       message,
     });
 
-    if (!result.success) {
-      const flat = result.error.flatten().fieldErrors;
+    if (!validationResult.success) {
+      const flat = validationResult.error.flatten().fieldErrors;
       setErrors({
         name: flat.name?.[0],
         phone: flat.phone?.[0],
@@ -85,8 +82,20 @@ export function ContactForm({ compact = false, dark = false }: Props) {
 
     setErrors({});
     setFormState("submitting");
-    await new Promise((r) => setTimeout(r, 1400));
-    setFormState("success");
+
+    const sendResult = await sendContactEmail({
+      name,
+      contactMethod,
+      phone,
+      email,
+      message,
+    });
+
+    if (sendResult.success) {
+      setFormState("success");
+    } else {
+      setFormState("error");
+    }
   };
 
   const handleReset = () => {
@@ -194,7 +203,7 @@ export function ContactForm({ compact = false, dark = false }: Props) {
         </div>
       </div>
 
-      {/* Телефон или Email — в зависимости от выбранного метода */}
+      {/* Телефон или Email */}
       {contactMethod === "phone" ? (
         <Field label="Телефон" htmlFor="cf-phone" error={errors.phone} required>
           <Input
@@ -266,6 +275,20 @@ export function ContactForm({ compact = false, dark = false }: Props) {
           )}
         />
       </Field>
+
+      {/* Глобальная ошибка */}
+      {formState === "error" && (
+        <p
+          className={cn(
+            "rounded-md border px-4 py-3 text-sm",
+            dark
+              ? "border-error/40 bg-error/10 text-error"
+              : "border-error/40 bg-error-surface text-error",
+          )}
+        >
+          Не удалось отправить сообщение. Попробуйте ещё раз или позвоните нам.
+        </p>
+      )}
 
       <button
         type="submit"

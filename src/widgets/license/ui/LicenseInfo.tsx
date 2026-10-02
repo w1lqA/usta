@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { Eye } from "lucide-react";
-import { ActionLink } from "@/src/shared/ui";
+import { ActionLink } from "@/shared/ui";
 
 type Props = {
   onOpen: () => void;
@@ -19,10 +18,10 @@ const rows = [
 
 export function LicenseInfo({ onOpen }: Props) {
   return (
-    <div className="flex flex-col justify-center border-white/10 py-20 lg:border-r lg:py-28 pr-10 lg:pr-16">
-      <div className="mb-12 flex items-center gap-4">
+    <div className="flex flex-col justify-center border-white/10 py-16 pr-0 lg:border-r lg:py-28 lg:pr-16">
+      <div className="mb-10 flex items-center gap-4 lg:mb-12">
         <div className="h-px w-8 bg-brand-green" />
-        <span className="text-caption font-bold uppercase text-neutral-500 tracking-[0.22em]">
+        <span className="text-caption font-bold tracking-[0.22em] text-white/50 uppercase">
           ЛИЦЕНЗИЯ
         </span>
       </div>
@@ -33,39 +32,40 @@ export function LicenseInfo({ onOpen }: Props) {
         <span className="text-white/45">на основании лицензии</span>
       </h2>
 
-      <p className="mb-12 max-w-[27.5rem] text-lg leading-[1.7] text-white/60">
+      <p className="mb-10 max-w-[27.5rem] text-base leading-[1.7] text-white/60 lg:mb-12 lg:text-lg">
         АНО ДПО УЦ «УСТА» ведёт образовательную деятельность на основании
         лицензии уполномоченного органа. Все удостоверения имеют юридическую
         силу и признаются работодателями по всей России.
       </p>
 
-      <div className="mb-12 space-y-5 max-w-[40rem]">
+      <div className="mb-10 flex flex-col gap-4 lg:mb-12 lg:gap-5">
         {rows.map((row) => (
-          <div key={row.label} className="flex items-baseline gap-4">
-            <span className="w-[8.5rem] flex-shrink-0 text-caption font-semibold tracking-wide text-white/30 uppercase">
+          <div
+            key={row.label}
+            className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:gap-4"
+          >
+            <span className="text-caption font-semibold tracking-wide text-white/30 uppercase sm:w-[8.5rem] sm:flex-shrink-0">
               {row.label}
             </span>
-            <div className="flex-1 border-b border-white/10" />
-            <span className="max-w-[12.5rem] text-right text-xs leading-snug text-white/65">
+            <span className="hidden h-px flex-1 bg-white/10 sm:block" />
+            <span className="text-xs leading-snug text-white/65 sm:max-w-[12.5rem] sm:text-right">
               {row.value}
             </span>
           </div>
         ))}
       </div>
 
-      <div className="flex flex-wrap gap-6">
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
         <button
+          type="button"
           onClick={onOpen}
-          className="btn btn-primary btn-sm text-brand-primary! bg-white!"
+          className="btn btn-sm bg-white text-brand-primary hover:bg-white/90"
         >
           <Eye size={14} />
           Посмотреть лицензию
         </button>
 
-        <ActionLink
-          href="/about/documents"
-          tone="light"
-        >
+        <ActionLink href="/about/documents" tone="light">
           Все документы
         </ActionLink>
       </div>

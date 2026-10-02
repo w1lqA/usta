@@ -16,7 +16,7 @@ export function Hero() {
     <section
       className={cn(
         "relative overflow-hidden bg-dark-950",
-        "h-[calc(100vh-var(--header-height))]",
+        "h-[calc(100dvh-var(--header-height))]",
         "min-h-(--hero-min-height) max-h-(--hero-max-height)",
         "rounded-b-3xl",
       )}
@@ -54,9 +54,10 @@ export function Hero() {
         );
       })}
 
-      <Container className="pointer-events-none relative h-full">
-        <div className="pointer-events-auto absolute bottom-14 left-0 max-w-[min(38rem,88%)]">
-          <div className="relative w-fit">
+      <Container className="pointer-events-none relative flex h-full flex-col justify-end pb-6 sm:block sm:pb-0">
+        {/* Panel — bottom on mobile, bottom-left on desktop */}
+        <div className="pointer-events-auto w-full sm:absolute sm:bottom-14 sm:left-0 sm:max-w-[min(38rem,88%)]">
+          <div className="relative w-full sm:w-fit">
             {slides.map((slide, idx) => (
               <HeroPanel
                 key={slide.id}
@@ -67,8 +68,8 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Controls — bottom right */}
-        <div className="pointer-events-auto absolute bottom-14 right-0 z-10">
+        {/* Controls — bottom on mobile (full width row), bottom-right on desktop */}
+        <div className="pointer-events-auto mt-5 mb-4 sm:mb-0 w-full sm:absolute sm:right-0 sm:bottom-14 sm:mt-0 sm:w-auto">
           <HeroControls
             total={slides.length}
             active={activeSlide}

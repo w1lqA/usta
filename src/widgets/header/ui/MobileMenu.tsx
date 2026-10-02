@@ -11,16 +11,17 @@ type MobileMenuProps = {
   open: boolean;
   phone: string;
   phoneHref: string;
+  onContactClick: () => void;
 };
 
-export function MobileMenu({ open, phone, phoneHref }: MobileMenuProps) {
+export function MobileMenu({ open, phone, phoneHref, onContactClick }: MobileMenuProps) {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
 
   return (
     <div
       className={cn(
         "fixed inset-x-0 z-[90] flex flex-col overflow-y-auto",
-        "top-(--header-height) h-[calc(100dvh-var(--header-height))]",
+        "top-(--header-height) h-[calc(100dvh+var(--header-height))]",
         "border-t border-border bg-white px-6 py-8",
         "transition-standard lg:hidden",
         open
@@ -98,7 +99,11 @@ export function MobileMenu({ open, phone, phoneHref }: MobileMenuProps) {
         {phone}
       </a>
 
-      <Button href="/contacts" className="mt-6 w-full">
+      <Button
+        type="button"
+        className="mt-6 w-full"
+        onClick={onContactClick}
+      >
         Оставить заявку
       </Button>
     </div>

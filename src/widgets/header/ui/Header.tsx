@@ -200,8 +200,16 @@ export function Header() {
         </Container>
       </motion.header>
 
-      <MobileMenu open={menuOpen} phone={PHONE} phoneHref={PHONE_HREF} />
-
+      <MobileMenu
+        open={menuOpen}
+        phone={PHONE}
+        phoneHref={PHONE_HREF}
+        onContactClick={() => {
+          setMenuOpen(false);
+          setContactModalOpen(true);
+        }}
+      />
+      
       <ContactFormModal
         open={contactModalOpen}
         onClose={() => setContactModalOpen(false)}

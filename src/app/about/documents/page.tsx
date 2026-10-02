@@ -4,7 +4,7 @@ import { DocumentsPage } from "@/views/about-documents";
 export const metadata: Metadata = {
   title: "Документы — УЦ УСТА",
   description:
-    "Прайс-лист, реквизиты, перечень образовательных программ и другие документы АНО ДПО УЦ «УСТА».",
+    "Реквизиты, перечень образовательных программ и другие документы АНО ДПО УЦ «УСТА».",
 };
 
 export default function Page() {

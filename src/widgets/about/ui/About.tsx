@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import {
   motion,
   useReducedMotion,
@@ -9,7 +8,6 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
-import { useRef } from "react";
 import { Container, Section, Heading, Text, ActionLink } from "@/shared/ui";
 import {
   fadeInLeftVariants,
@@ -18,12 +16,22 @@ import {
   springSoft,
   staggerContainer,
 } from "@/shared/lib";
-import { AboutAdvantages } from "./AboutAdvantages";
 import { AboutImage } from "./AboutImage";
+
+const viewportOnce = { once: true, amount: 0.2 } as const;
 
 export function About() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    setIsDesktop(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -36,18 +44,18 @@ export function About() {
     mass: 1,
   });
 
+  const parallaxEnabled = isDesktop && !shouldReduceMotion;
+
   const imageParallaxY = useTransform(
     smoothProgress,
     [0, 1],
-    shouldReduceMotion ? ["0px", "0px"] : ["40px", "-40px"],
+    parallaxEnabled ? ["40px", "-40px"] : ["0px", "0px"],
   );
   const cardParallaxY = useTransform(
     smoothProgress,
     [0, 1],
-    shouldReduceMotion ? ["0px", "0px"] : ["80px", "-60px"],
+    parallaxEnabled ? ["80px", "-60px"] : ["0px", "0px"],
   );
-
-  const viewportOnce = { once: true, amount: 0.2 } as const;
 
   return (
     <div ref={sectionRef}>
@@ -59,7 +67,7 @@ export function About() {
             viewport={viewportOnce}
             variants={fadeInLeftVariants}
             transition={shouldReduceMotion ? { duration: 0 } : springSoft}
-            className="mb-16 flex items-center gap-4"
+            className="mb-10 flex items-center gap-4 sm:mb-16"
           >
             <div className="h-px w-8 bg-brand-accent" />
             <span className="text-caption font-bold tracking-[0.22em] text-neutral-500 uppercase">
@@ -67,7 +75,7 @@ export function About() {
             </span>
           </motion.div>
 
-          <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-0">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-0">
             <motion.div
               initial={shouldReduceMotion ? false : "hidden"}
               whileInView="visible"
@@ -82,7 +90,7 @@ export function About() {
                 <Heading
                   as="h2"
                   level="display-lg"
-                  className="mb-10 max-w-[14ch] text-dark-900"
+                  className="mb-8 max-w-[14ch] text-dark-900 sm:mb-10"
                 >
                   Скорость.
                   <br />
@@ -95,7 +103,7 @@ export function About() {
               <motion.div
                 variants={fadeUpVariants}
                 transition={shouldReduceMotion ? { duration: 0 } : springSoft}
-                className="mb-14 flex max-w-[36rem] flex-col gap-5"
+                className="mb-10 flex max-w-[36rem] flex-col gap-5 sm:mb-14"
               >
                 <Text size="lg" className="text-neutral-700">
                   В основе работы АНО ДПО УЦ «УСТА» лежит безупречная
@@ -114,9 +122,7 @@ export function About() {
                 variants={fadeInLeftVariants}
                 transition={shouldReduceMotion ? { duration: 0 } : springSoft}
               >
-                <ActionLink href="/about">
-                  Подробнее о центре
-                </ActionLink>
+                <ActionLink href="/about">Подробнее о центре</ActionLink>
               </motion.div>
             </motion.div>
 
@@ -124,7 +130,7 @@ export function About() {
               <AboutImage
                 imageParallaxY={imageParallaxY}
                 cardParallaxY={cardParallaxY}
-                shouldReduceMotion={!!shouldReduceMotion}
+                shouldReduceMotion={!parallaxEnabled}
               />
             </div>
           </div>

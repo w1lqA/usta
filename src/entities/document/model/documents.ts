@@ -2,14 +2,6 @@ import type { PdfDocument } from "./types";
 
 export const pdfDocuments: PdfDocument[] = [
   {
-    id: "price-list",
-    title: "Прайс-лист на образовательные услуги",
-    description: "Актуальный прайс-лист учебного центра",
-    fileType: "pdf",
-    fileUrl: "#",
-    fileSize: "—",
-  },
-  {
     id: "requisites",
     title: "Реквизиты организации",
     description: "Юридические реквизиты АНО ДПО УЦ «УСТА»",

@@ -1,11 +1,25 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useCustomCursor } from "./useCustomCursor";
 
 const ACCENT = "39, 124, 122";
 
 export function AnimatedCursor() {
+  const [enabled, setEnabled] = useState(false);
   const { outerWrapRef, outerCircleRef, innerRef, dotSize } = useCustomCursor();
+
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    setEnabled(mq.matches);
+
+    const handler = (e: MediaQueryListEvent) => setEnabled(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+
+  if (!enabled) return null;
 
   return (
     <>
