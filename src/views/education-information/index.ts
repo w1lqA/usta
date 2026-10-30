@@ -1,0 +1,1 @@
+export { EducationInformationPage } from "./ui/EducationInformationPage";

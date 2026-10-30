@@ -1,3 +1,4 @@
+// src/widgets/header/model/nav-links.ts
 import { programCategories } from "@/entities/program-category";
 
 export type NavChild = {
@@ -24,14 +25,6 @@ export const navLinks: NavLink[] = [
       })),
     ],
   },
-  {
-    label: "О центре",
-    href: "/about",
-    children: [
-      { label: "Сведения об ОО", href: "/about" },
-      { label: "Лицензия и сертификаты", href: "/about/licenses" },
-      { label: "Документы", href: "/about/documents" },
-    ],
-  },
+  { label: "Сведения об ОО", href: "/sveden" },
   { label: "Контакты", href: "/contacts" },
 ];

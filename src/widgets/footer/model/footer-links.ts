@@ -1,7 +1,4 @@
-export type FooterLink = {
-  label: string;
-  href: string;
-};
+export type FooterLink = { label: string; href: string };
 
 export const trainingLinks: FooterLink[] = [
   { label: "Все программы", href: "/programs" },
@@ -24,7 +21,6 @@ export const serviceItems: string[] = [
 ];
 
 export const documentLinks: FooterLink[] = [
-  { label: "Реквизиты", href: "/about/documents" },
-  { label: "Лицензия", href: "/about/licenses" },
+  { label: "Сведения об образовательной организации", href: "/sveden" },
   { label: "Политика конф.", href: "/privacy" },
 ];

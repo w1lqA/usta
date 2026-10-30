@@ -8,7 +8,7 @@ export const programCategories: ProgramCategory[] = [
     shortDescription:
       "Обучение и проверка знаний требований охраны труда, оказание первой помощи, использование СИЗ и безопасные методы выполнения работ.",
     heroImage:
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1920&h=1080&fit=crop&auto=format",
+      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&h=1080&fit=crop&auto=format",
     checklist: [
       "Обучение и проверка знаний требований охраны труда",
       "Оказание первой помощи",
@@ -23,7 +23,7 @@ export const programCategories: ProgramCategory[] = [
     shortDescription:
       "Подготовка специалистов по пожарной профилактике и монтажу, обслуживанию и ремонту систем пожаротушения.",
     heroImage:
-      "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=1920&h=1080&fit=crop&auto=format",
+      "https://maximumcentr.ru/wp-content/uploads/2025/10/fire-safety-training.jpg",
     checklist: [
       "Специалист по пожарной профилактике",
       "Монтаж, техническое обслуживание и ремонт систем пожаротушения и их элементов, включая диспетчеризацию и проведение пусконаладочных работ",
@@ -36,7 +36,7 @@ export const programCategories: ProgramCategory[] = [
     shortDescription:
       "Программы профессиональной подготовки по рабочим профессиям: монтажники, изолировщики, стропальщики.",
     heroImage:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&h=1080&fit=crop&auto=format",
+      "https://images.unsplash.com/photo-1593583810872-ddee4d6bd55a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
     checklist: [
       "Монтажник наружных трубопроводов",
       "Монтажник стальных и железобетонных конструкций",
@@ -52,7 +52,7 @@ export const programCategories: ProgramCategory[] = [
     shortDescription:
       "Программы профессиональной переподготовки для специалистов в области техносферной, пожарной и транспортной безопасности.",
     heroImage:
-      "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1920&h=1080&fit=crop&auto=format",
+      "https://plus.unsplash.com/premium_photo-1664477125295-1cd0d42c1175?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
     checklist: [
       "Техносферная безопасность. Охрана труда",
       "Специалист, ответственный за обеспечение безопасности дорожного движения",
@@ -67,7 +67,7 @@ export const programCategories: ProgramCategory[] = [
     shortDescription:
       "Программы повышения квалификации в области экологической и промышленной безопасности.",
     heroImage:
-      "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1920&h=1080&fit=crop&auto=format",
+      "https://plus.unsplash.com/premium_photo-1661963946680-8686013ff84b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
     checklist: [
       "Обеспечение экологической безопасности при работах с опасными отходами",
       "Требования промышленной безопасности к оборудованию",

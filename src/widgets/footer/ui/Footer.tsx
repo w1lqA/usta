@@ -233,10 +233,10 @@ export function Footer() {
               Политика конфиденциальности
             </Link>
             <Link
-              href="/documents"
+              href="/sveden#dokumenty"
               className="text-caption text-white/25 transition-colors hover:text-white/50"
             >
-              Реквизиты
+              Документы
             </Link>
           </div>
         </motion.div>

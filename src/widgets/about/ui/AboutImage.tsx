@@ -1,7 +1,10 @@
+// src/widgets/about/ui/AboutImage.tsx
 "use client";
 
 import { motion, type MotionValue } from "motion/react";
 import { AboutAdvantages } from "./AboutAdvantages";
+
+const ABOUT_IMAGE = "/images/about/classroom.jpg";
 
 type Props = {
   imageParallaxY: MotionValue<string>;
@@ -21,7 +24,7 @@ export function AboutImage({
         <div className="radius-signature relative aspect-[4/5] w-full overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://images.unsplash.com/photo-1638957835514-224c57ffe617?w=760&h=1000&fit=crop&auto=format"
+            src={ABOUT_IMAGE}
             alt="Учебный процесс"
             className="absolute inset-0 h-full w-full object-cover"
           />
@@ -50,8 +53,8 @@ export function AboutImage({
         </div>
       </div>
 
-      {/* ─── Desktop: bleed + parallax (как было) ─── */}
-      <div className="hidden lg:block">
+      {/* ─── Desktop: bleed + parallax ─── */}
+      <div className="hidden lg:block relative min-h-[40rem]">
         <div className="absolute inset-y-0 left-0 right-0 -mr-[calc((100vw-87.5rem)/2+3.5rem)]">
           <motion.div
             style={{ y: shouldReduceMotion ? 0 : imageParallaxY }}
@@ -59,7 +62,7 @@ export function AboutImage({
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://images.unsplash.com/photo-1638957835514-224c57ffe617?w=1200&h=1600&fit=crop&auto=format"
+              src={ABOUT_IMAGE}
               alt="Учебный процесс"
               className="absolute inset-0 h-full w-full object-cover"
             />

@@ -18,7 +18,7 @@ export const programs: Program[] = [
     categorySlug: "ohrana-truda",
     title: "Оказание первой помощи пострадавшим",
     image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&h=640&fit=crop&auto=format",
+      "https://images.unsplash.com/photo-1624638760852-8ede1666ab07?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
     hours: 16,
     breakdown: { theory: 7, practice: 7, exam: 2 },
     duration: "2 дня",
@@ -29,7 +29,7 @@ export const programs: Program[] = [
     categorySlug: "ohrana-truda",
     title: "Использование (применение) средств индивидуальной защиты (СИЗ)",
     image:
-      "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=900&h=640&fit=crop&auto=format",
+      "https://images.unsplash.com/photo-1593854519602-687eae339d57?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
     hours: 8,
     breakdown: { theory: 3, practice: 4, exam: 1 },
     formats: ["очно-заочная", "заочная с применением ДОТ"],
@@ -73,7 +73,7 @@ export const programs: Program[] = [
     title:
       "Безопасные методы и приемы выполнения работ повышенной опасности…",
     image:
-      "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=900&h=640&fit=crop&auto=format",
+      "https://images.unsplash.com/photo-1652974135481-e82f7630eaa2?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
     hours: 16,
     breakdown: { theory: 11, practice: 4, exam: 1 },
     formats: ["очно-заочная", "заочная с применением ДОТ"],
@@ -144,7 +144,7 @@ export const programs: Program[] = [
     categorySlug: "professionalnoe-obuchenie",
     title: "Изолировщик",
     image:
-      "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=900&h=640&fit=crop&auto=format",
+      "https://plus.unsplash.com/premium_photo-1683121110421-2619f41ac5d8?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
     hours: 112,
     breakdown: { theory: 40, practice: 64, exam: 8 },
     formats: [
@@ -159,7 +159,7 @@ export const programs: Program[] = [
     categorySlug: "professionalnoe-obuchenie",
     title: "Изолировщик на термоизоляции",
     image:
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=900&h=640&fit=crop&auto=format",
+      "https://images.unsplash.com/photo-1607400201889-565b1ee75f8e?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
     hours: 112,
     breakdown: { theory: 40, practice: 64, exam: 8 },
     formats: [
@@ -202,7 +202,7 @@ export const programs: Program[] = [
     title:
       "Специалист, ответственный за обеспечение безопасности дорожного движения",
     image:
-      "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=900&h=640&fit=crop&auto=format",
+      "https://images.unsplash.com/photo-1761501101551-9e41d7c62a6b?q=80&w=715&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
     hours: 512,
     breakdown: { theory: 454, internship: 50, exam: 8 },
     formats: ["очно-заочная с применением ДОТ"],
@@ -212,7 +212,7 @@ export const programs: Program[] = [
     categorySlug: "dopolnitelnaya-professionalnaya-perepodgotovka",
     title: "Специалист по пожарной профилактике",
     image:
-      "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=900&h=640&fit=crop&auto=format",
+      "https://maximumcentr.ru/wp-content/uploads/2025/10/fire-safety-training.jpg",
     hours: 256,
     breakdown: { theory: 236, exam: 6 },
     formats: [
@@ -226,7 +226,7 @@ export const programs: Program[] = [
     categorySlug: "dopolnitelnaya-professionalnaya-perepodgotovka",
     title: "Контролер технического состояния автотранспортных средств",
     image:
-      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=900&h=640&fit=crop&auto=format",
+      "https://images.unsplash.com/photo-1625047509248-ec889cbff17f?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
     hours: 512,
     breakdown: { theory: 454, internship: 50, exam: 8 },
     formats: ["очно-заочная с применением ДОТ"],
@@ -263,7 +263,7 @@ export const programs: Program[] = [
     title:
       "Подготовка руководителей организаций и специалистов в области охраны окружающей среды и экологической безопасности…",
     image:
-      "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=900&h=640&fit=crop&auto=format",
+      "https://plus.unsplash.com/premium_photo-1663040117567-ab8441cb7b04?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
     hours: 40,
     breakdown: { theory: 38, exam: 2 },
     formats: ["очно-заочная", "заочная с применением ДОТ"],
