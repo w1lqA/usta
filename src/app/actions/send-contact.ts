@@ -5,13 +5,15 @@ import { contactFormSchema } from "@/features/contact-form/model/schema";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function sendContactEmail(formData: {
+type SendContactInput = {
   name: string;
   contactMethod: "phone" | "email";
   phone?: string;
   email?: string;
   message: string;
-}) {
+};
+
+export async function sendContactEmail(formData: SendContactInput) {
   const validated = contactFormSchema.safeParse(formData);
   if (!validated.success) {
     return { success: false, error: "Некорректные данные" };
@@ -30,8 +32,10 @@ export async function sendContactEmail(formData: {
 Имя: ${name}
 Способ связи: ${contactMethod === "phone" ? "Телефон" : "Email"}
 Контакт: ${contactInfo}
-Сообщение: ${message}
-      `,
+
+Сообщение:
+${message}
+      `.trim(),
     });
     return { success: true };
   } catch (error) {
